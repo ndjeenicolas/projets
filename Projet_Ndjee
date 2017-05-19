@@ -1,0 +1,44 @@
+#!/bin/bash
+echo "Bienvenue sur mon projet syst";
+echo "Veuiller entrez la lettre correspondant à l'operation que vous souheter effectuer";
+echo "a) Les informations des utilisateurs";
+echo "b) Aquisition, instalation et lancement de lenvironement Xampp";
+echo "c) Archivage du repertoire personnel";
+echo "d) Information sur l'utilisation du disque, de la memoire et du processeur";
+echo "q) Pour quiter le programme";
+
+read x;
+  while ( test $x != q) do
+           if( test  $x = a) then
+             echo " the users information: ";
+                 ls -lht /home;
+            else
+                if( test $x = b) then
+                     echo " Enter the password of root to Install Xampp-linux ";
+                     sudo wget http://www.apachefreinds.org/download.html/xampp-linux-x64-7.0.18-1-installer.run;
+                     echo "Fin de tellechargement du xampp";
+                     echo " Debut de l,installation";
+                     sudo chmod 777 xampp-linux-x64-7.0.18-1-installer.run;
+                     sudo ./xampp-linux-x64-7.0.18-1-installer.run;
+                     echo " Fin de l'installation de xampp";
+                     echo " Lencement de xampp";
+                     sudo /lamp/lamp/ start;
+                     echo "lencement terminé";
+                   else
+                     if (test $x = c ) then
+                            echo " En cours";
+                            sudo find . -ctime -2>file1 | tar cvf file1.tar file1
+                        else 
+                           if ( test $x = d) then
+                            echo "Information du disk, la memoire, le processeur et swap";
+                            top | head -6;
+                            df ; 
+                           fi
+                     fi
+                fi
+            fi
+         echo " Entrer une autre lettre pour continuer";
+    read x;
+done
+
+
